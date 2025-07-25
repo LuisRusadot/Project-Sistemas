@@ -10,7 +10,6 @@ if ($conexion->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Datos básicos
     $nombre = $conexion->real_escape_string($_POST['nombre']);
     $email = $conexion->real_escape_string($_POST['email']);
     $telefono = $conexion->real_escape_string($_POST['telefono']);
@@ -21,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $institucion_curso = $conexion->real_escape_string($_POST['institucion_curso'] ?? '');
     $fecha_cert = $conexion->real_escape_string($_POST['fecha_cert'] ?? '');
 
-    // Manejo de la foto
     $foto = '';
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] == UPLOAD_ERR_OK) {
         $extension = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
@@ -33,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Insertar en la base de datos
     $stmt = $conexion->prepare("INSERT INTO hoja_vida (nombre, email, telefono, tecnica, perfil, idiomas, certificacion, institucion_curso, fecha_cert, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssssssss", $nombre, $email, $telefono, $tecnica, $perfil, $idiomas, $certificacion, $institucion_curso, $fecha_cert, $foto);
     
