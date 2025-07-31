@@ -13,6 +13,7 @@ CREATE TABLE hoja_vida (
     institucion_curso VARCHAR(100),
     fecha_cert DATE,
     foto VARCHAR(255),
+    habilidades TEXT,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
