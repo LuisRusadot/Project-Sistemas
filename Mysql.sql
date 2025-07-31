@@ -16,6 +16,26 @@ CREATE TABLE hoja_vida (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Agregar índice para búsquedas más rápidas
+CREATE TABLE experiencia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_hoja_vida INT NOT NULL,
+    empresa VARCHAR(100),
+    inicio DATE,
+    fin DATE,
+    puesto VARCHAR(100),
+    funciones TEXT,
+    FOREIGN KEY (id_hoja_vida) REFERENCES hoja_vida(id)
+);
+
+CREATE TABLE educacion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_hoja_vida INT NOT NULL,
+    institucion VARCHAR(100),
+    ubicacion VARCHAR(100),
+    titulo VARCHAR(100),
+    fecha DATE,
+    FOREIGN KEY (id_hoja_vida) REFERENCES hoja_vida(id)
+);
+
 CREATE INDEX idx_nombre ON hoja_vida(nombre);
 CREATE INDEX idx_tecnica ON hoja_vida(tecnica);
